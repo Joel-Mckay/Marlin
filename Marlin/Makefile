@@ -56,7 +56,7 @@
 #
 
 # This defines the board to compile for (see boards.h for your board's ID)
-HARDWARE_MOTHERBOARD ?= 11
+HARDWARE_MOTHERBOARD ?= 775
 
 # Arduino source install directory, and version number
 # On most linuxes this will be /usr/share/arduino
@@ -70,7 +70,10 @@ AVR_TOOLS_PATH ?=
 UPLOAD_RATE        ?= 57600
 AVRDUDE_PROGRAMMER ?= arduino
 # on most linuxes this will be /dev/ttyACM0 or /dev/ttyACM1
-UPLOAD_PORT        ?= /dev/ttyUSB0
+# UPLOAD_PORT        ?= /dev/ttyUSB0
+#UPLOAD_PORT        ?= /dev/ttyACM0
+#UPLOAD_PORT        ?= /dev/ttyAMA0
+UPLOAD_PORT        ?= /dev/ttyS0
 
 #Directory used to build files in, contains all the build files, from object files to the final hex file
 #on linux it is best to put an absolute path like /home/username/tmp .
@@ -243,6 +246,19 @@ else ifeq  ($(HARDWARE_MOTHERBOARD),68)
 HARDWARE_VARIANT ?= arduino
 MCU              ?= atmega2560
 
+# Infinity
+else ifeq  ($(HARDWARE_MOTHERBOARD),774)
+HARDWARE_VARIANT ?= arduino
+MCU              ?= atmega2560
+else ifeq  ($(HARDWARE_MOTHERBOARD),775)
+HARDWARE_VARIANT ?= arduino
+MCU              ?= atmega2560
+else ifeq  ($(HARDWARE_MOTHERBOARD),776)
+HARDWARE_VARIANT ?= arduino
+MCU              ?= atmega2560
+else ifeq  ($(HARDWARE_MOTHERBOARD),777)
+HARDWARE_VARIANT ?= arduino
+MCU              ?= atmega2560
 endif
 
 # Be sure to regenerate speed_lookuptable.h with create_speed_lookuptable.py

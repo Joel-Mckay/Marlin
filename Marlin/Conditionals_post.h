@@ -482,6 +482,9 @@
    */
 
   // Steppers
+  //todo: figure out why this macro fails to resolve, and must use defined() call instead
+  #define HAS_RESET_ENABLE      (defined(STEPPERS_RESET_PIN))
+  
   #define HAS_X_ENABLE      (PIN_EXISTS(X_ENABLE))
   #define HAS_X_DIR         (PIN_EXISTS(X_DIR))
   #define HAS_X_STEP        (PIN_EXISTS(X_STEP))

@@ -63,34 +63,43 @@ void manage_inactivity(bool ignore_stepper_queue = false);
   extern bool extruder_duplication_enabled;
 #endif
 
+#if HAS_RESET_ENABLE
+	#pragma GCC warning "STEPPERS_RESET_PIN is ACTIVE, pausing prints by disabling motors is not possible without homing"
+	#define STEPPERS_ENABLE_ALL_OUTPUT STEPPERS_ENABLE_WRITE(HIGH);
+	#define STEPPERS_DISABLE_ALL_OUTPUT STEPPERS_ENABLE_WRITE(LOW);
+#else
+	#define STEPPERS_ENABLE_ALL_OUTPUT 
+	#define STEPPERS_DISABLE_ALL_OUTPUT 
+#endif
+
 #if HAS_X2_ENABLE
-  #define  enable_X() do{ X_ENABLE_WRITE( X_ENABLE_ON); X2_ENABLE_WRITE( X_ENABLE_ON); }while(0)
-  #define disable_X() do{ X_ENABLE_WRITE(!X_ENABLE_ON); X2_ENABLE_WRITE(!X_ENABLE_ON); axis_known_position[X_AXIS] = false; }while(0)
+  #define  enable_X() do{ X_ENABLE_WRITE( X_ENABLE_ON); X2_ENABLE_WRITE( X_ENABLE_ON); STEPPERS_ENABLE_ALL_OUTPUT}while(0)
+  #define disable_X() do{ X_ENABLE_WRITE(!X_ENABLE_ON); X2_ENABLE_WRITE(!X_ENABLE_ON); axis_known_position[X_AXIS] = false; STEPPERS_DISABLE_ALL_OUTPUT}while(0)
 #elif HAS_X_ENABLE
-  #define  enable_X() X_ENABLE_WRITE( X_ENABLE_ON)
-  #define disable_X() do{ X_ENABLE_WRITE(!X_ENABLE_ON); axis_known_position[X_AXIS] = false; }while(0)
+  #define  enable_X() {X_ENABLE_WRITE( X_ENABLE_ON); STEPPERS_ENABLE_ALL_OUTPUT }
+  #define disable_X() do{ X_ENABLE_WRITE(!X_ENABLE_ON); axis_known_position[X_AXIS] = false; STEPPERS_DISABLE_ALL_OUTPUT}while(0)
 #else
   #define  enable_X() NOOP
   #define disable_X() NOOP
 #endif
 
 #if HAS_Y2_ENABLE
-  #define  enable_Y() do{ Y_ENABLE_WRITE( Y_ENABLE_ON); Y2_ENABLE_WRITE(Y_ENABLE_ON); }while(0)
-  #define disable_Y() do{ Y_ENABLE_WRITE(!Y_ENABLE_ON); Y2_ENABLE_WRITE(!Y_ENABLE_ON); axis_known_position[Y_AXIS] = false; }while(0)
+  #define  enable_Y() do{ Y_ENABLE_WRITE( Y_ENABLE_ON); Y2_ENABLE_WRITE(Y_ENABLE_ON); STEPPERS_ENABLE_ALL_OUTPUT}while(0)
+  #define disable_Y() do{ Y_ENABLE_WRITE(!Y_ENABLE_ON); Y2_ENABLE_WRITE(!Y_ENABLE_ON); axis_known_position[Y_AXIS] = false; STEPPERS_DISABLE_ALL_OUTPUT}while(0)
 #elif HAS_Y_ENABLE
-  #define  enable_Y() Y_ENABLE_WRITE( Y_ENABLE_ON)
-  #define disable_Y() do{ Y_ENABLE_WRITE(!Y_ENABLE_ON); axis_known_position[Y_AXIS] = false; }while(0)
+  #define  enable_Y() {Y_ENABLE_WRITE( Y_ENABLE_ON); STEPPERS_ENABLE_ALL_OUTPUT}
+  #define disable_Y() do{ Y_ENABLE_WRITE(!Y_ENABLE_ON); axis_known_position[Y_AXIS] = false; STEPPERS_DISABLE_ALL_OUTPUT}while(0)
 #else
   #define  enable_Y() NOOP
   #define disable_Y() NOOP
 #endif
 
 #if HAS_Z2_ENABLE
-  #define  enable_Z() do{ Z_ENABLE_WRITE( Z_ENABLE_ON); Z2_ENABLE_WRITE(Z_ENABLE_ON); }while(0)
-  #define disable_Z() do{ Z_ENABLE_WRITE(!Z_ENABLE_ON); Z2_ENABLE_WRITE(!Z_ENABLE_ON); axis_known_position[Z_AXIS] = false; }while(0)
+  #define  enable_Z() do{ Z_ENABLE_WRITE( Z_ENABLE_ON); Z2_ENABLE_WRITE(Z_ENABLE_ON); STEPPERS_ENABLE_ALL_OUTPUT}while(0)
+  #define disable_Z() do{ Z_ENABLE_WRITE(!Z_ENABLE_ON); Z2_ENABLE_WRITE(!Z_ENABLE_ON); axis_known_position[Z_AXIS] = false; STEPPERS_DISABLE_ALL_OUTPUT}while(0)
 #elif HAS_Z_ENABLE
-  #define  enable_Z() Z_ENABLE_WRITE( Z_ENABLE_ON)
-  #define disable_Z() do{ Z_ENABLE_WRITE(!Z_ENABLE_ON); axis_known_position[Z_AXIS] = false; }while(0)
+  #define  enable_Z() {Z_ENABLE_WRITE( Z_ENABLE_ON); STEPPERS_ENABLE_ALL_OUTPUT}
+  #define disable_Z() do{ Z_ENABLE_WRITE(!Z_ENABLE_ON); axis_known_position[Z_AXIS] = false; STEPPERS_DISABLE_ALL_OUTPUT}while(0)
 #else
   #define  enable_Z() NOOP
   #define disable_Z() NOOP

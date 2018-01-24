@@ -100,6 +100,10 @@
 #define BOARD_BAM_DICE_DUE      402  // 2PrintBeta BAM&DICE Due with STK drivers
 #define BOARD_BQ_ZUM_MEGA_3D    503  // bq ZUM Mega 3D
 #define BOARD_ZRIB_V20          504  // zrib V2.0 control board (Chinese knock off RAMPS replica)
+#define BOARD_INFINITY_SF          774  // Infinity board Laser/Engrave mode
+#define BOARD_INFINITY_EFB          775  // Infinity board 1 color
+#define BOARD_INFINITY_EEEEEB          776  // Infinity board 5 color
+#define BOARD_INFINITY_EEEEFB          777  // Infinity board 4 color
 
 #define MB(board) (MOTHERBOARD==BOARD_##board)
 

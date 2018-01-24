@@ -65,6 +65,15 @@
   void L6470_init();
 #endif
 
+
+//All steppers, used to resets all internal state and disable driver output
+#if defined(STEPPERS_RESET_PIN)
+    #define STEPPERS_ENABLE_INIT SET_OUTPUT(STEPPERS_RESET_PIN)
+    #define STEPPERS_ENABLE_WRITE(STATE) WRITE(STEPPERS_RESET_PIN,STATE)
+    #define STEPPERS_ENABLE_READ READ(STEPPERS_RESET_PIN)
+#endif
+
+
 // X Stepper
 #if ENABLED(HAVE_L6470DRIVER) && ENABLED(X_IS_L6470)
   extern L6470 stepperX;

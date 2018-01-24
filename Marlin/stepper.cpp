@@ -968,13 +968,17 @@ void Stepper::init() {
     E4_DIR_INIT;
   #endif
 
-  // Init Enable Pins - steppers default to disabled.
+  // Init Enable Pins - steppers default to disabled. 
   #if HAS_X_ENABLE
     X_ENABLE_INIT;
     if (!X_ENABLE_ON) X_ENABLE_WRITE(HIGH);
     #if ENABLED(DUAL_X_CARRIAGE) && HAS_X2_ENABLE
       X2_ENABLE_INIT;
       if (!X_ENABLE_ON) X2_ENABLE_WRITE(HIGH);
+    #endif
+    #if HAS_RESET_ENABLE
+      STEPPERS_ENABLE_INIT;
+      if (!X_ENABLE_ON) STEPPERS_ENABLE_WRITE(LOW);	//held in reset/off
     #endif
   #endif
   #if HAS_Y_ENABLE
@@ -984,6 +988,10 @@ void Stepper::init() {
       Y2_ENABLE_INIT;
       if (!Y_ENABLE_ON) Y2_ENABLE_WRITE(HIGH);
     #endif
+    #if HAS_RESET_ENABLE
+      STEPPERS_ENABLE_INIT;
+      if (!Y_ENABLE_ON) STEPPERS_ENABLE_WRITE(LOW);	//held in reset/off
+    #endif
   #endif
   #if HAS_Z_ENABLE
     Z_ENABLE_INIT;
@@ -992,26 +1000,50 @@ void Stepper::init() {
       Z2_ENABLE_INIT;
       if (!Z_ENABLE_ON) Z2_ENABLE_WRITE(HIGH);
     #endif
+    #if HAS_RESET_ENABLE
+      STEPPERS_ENABLE_INIT;
+      if (!Z_ENABLE_ON) STEPPERS_ENABLE_WRITE(LOW);	//held in reset/off
+    #endif
   #endif
   #if HAS_E0_ENABLE
     E0_ENABLE_INIT;
     if (!E_ENABLE_ON) E0_ENABLE_WRITE(HIGH);
+    #if HAS_RESET_ENABLE
+      STEPPERS_ENABLE_INIT;
+      if (!E_ENABLE_ON) STEPPERS_ENABLE_WRITE(LOW);	//held in reset/off
+    #endif
   #endif
   #if HAS_E1_ENABLE
     E1_ENABLE_INIT;
     if (!E_ENABLE_ON) E1_ENABLE_WRITE(HIGH);
+    #if HAS_RESET_ENABLE
+      STEPPERS_ENABLE_INIT;
+      if (!E_ENABLE_ON) STEPPERS_ENABLE_WRITE(LOW);	//held in reset/off
+    #endif
   #endif
   #if HAS_E2_ENABLE
     E2_ENABLE_INIT;
     if (!E_ENABLE_ON) E2_ENABLE_WRITE(HIGH);
+    #if HAS_RESET_ENABLE
+      STEPPERS_ENABLE_INIT;
+      if (!E2_ENABLE_ON) STEPPERS_ENABLE_WRITE(LOW);	//held in reset/off
+    #endif
   #endif
   #if HAS_E3_ENABLE
     E3_ENABLE_INIT;
     if (!E_ENABLE_ON) E3_ENABLE_WRITE(HIGH);
+    #if HAS_RESET_ENABLE
+      STEPPERS_ENABLE_INIT;
+      if (!E3_ENABLE_ON) STEPPERS_ENABLE_WRITE(LOW);	//held in reset/off
+    #endif
   #endif
   #if HAS_E4_ENABLE
     E4_ENABLE_INIT;
     if (!E_ENABLE_ON) E4_ENABLE_WRITE(HIGH);
+    #if HAS_RESET_ENABLE
+      STEPPERS_ENABLE_INIT;
+      if (!E4_ENABLE_ON) STEPPERS_ENABLE_WRITE(LOW);	//held in reset/off
+    #endif
   #endif
 
   // Init endstops and pullups
