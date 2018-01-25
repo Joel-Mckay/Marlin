@@ -50,15 +50,15 @@
 //
 
 #if DISABLED(IS_INFINITY_EFB) && DISABLED(INFINITY_EEEEFB) && DISABLED(IS_INFINITY_EEEEEB) && DISABLED(IS_INFINITY_SF) 
-#if ENABLED(SPINDLE_LASER_ENABLE) 
+#if ENABLED(SPINDLE_LASER_ENABLE)
       #define IS_INFINITY_SF
 #else
 	#if (HOTENDS > 1) && (HOTENDS < 5)
-		#define IS_INFINITY_EEEEFB 
+		#define IS_INFINITY_EEEEFB
 	#elif HOTENDS > 4
-		#define IS_INFINITY_EEEEEB 
+		#define IS_INFINITY_EEEEEB
 	#else
-		#define IS_INFINITY_EFB 
+		#define IS_INFINITY_EFB
 	#endif
 #endif
 #endif
@@ -132,13 +132,13 @@
 #define Z_ENABLE_PIN      49
 #define Z_CS_PIN           49
 
-#if defined(INFINITY_EEEEEB) && !defined(IS_INFINITY_SF) 
+#if defined(INFINITY_EEEEEB) && !defined(IS_INFINITY_SF)
 	#define E4_STEP_PIN        65
 	#define E4_DIR_PIN          43
 	//not conected to logic
 	#define E4_ENABLE_PIN     49
 	#define E4_CS_PIN          49
-else
+#else
 	#define Z_DUAL_STEPPER_DRIVERS
 	#define Z2_STEP_PIN         65
 	#define Z2_DIR_PIN       43
@@ -227,12 +227,12 @@ else
 
 #if ENABLED(IS_INFINITY_EFB)                      // INFINITY_EFB (Hotend0, Fan0, Bed)
   #define HEATER_0_PIN   MOSFET_E0_PIN
-  #define FAN_PIN        MOSFET_AUX_PIN 
-  #define HEATER_BED_PIN MOSFET_BED_PIN 
+  #define FAN_PIN        MOSFET_AUX_PIN
+  #define HEATER_BED_PIN MOSFET_BED_PIN
   #ifndef EXTRUDERS
 	#define EXTRUDERS 1
   #endif
-  #ifndef HOTENDS 
+  #ifndef HOTENDS
 	#define HOTENDS 1
   #endif
 
@@ -242,54 +242,54 @@ else
   #define HEATER_2_PIN   MOSFET_E2_PIN
   #define HEATER_3_PIN   MOSFET_E3_PIN
   #define HEATER_4_PIN   MOSFET_E4_PIN
-  #define HEATER_BED_PIN MOSFET_BED_PIN 
+  #define HEATER_BED_PIN MOSFET_BED_PIN
   #ifndef EXTRUDERS
 	#define EXTRUDERS 5
   #endif
-  #ifndef HOTENDS 
+  #ifndef HOTENDS
 	#define HOTENDS 1
   #endif
-  #ifndef MIXING_STEPPERS 
-	#define MIXING_EXTRUDER 
+  #ifndef MIXING_STEPPERS
+	#define MIXING_EXTRUDER
 	#define MIXING_STEPPERS 5
   #endif
-  
+
 #elif ENABLED(IS_INFINITY_EEEEFB)                      // INFINITY_EEEEFB (Hotend0, Hotend1,  Hotend2,  Hotend3, Fan0, Bed)
   #define HEATER_0_PIN   MOSFET_E0_PIN
   #define HEATER_1_PIN   MOSFET_E1_PIN
   #define HEATER_2_PIN   MOSFET_E2_PIN
   #define HEATER_3_PIN   MOSFET_E3_PIN
-  #define FAN_PIN        MOSFET_AUX_PIN 
+  #define FAN_PIN        MOSFET_AUX_PIN
   #define HEATER_BED_PIN MOSFET_BED_PIN
   #ifndef EXTRUDERS
 	#define EXTRUDERS 4
   #endif
-  #ifndef HOTENDS 
+  #ifndef HOTENDS
 	#define HOTENDS 1
   #endif
-  #ifndef MIXING_STEPPERS 
-	#define MIXING_EXTRUDER 
+  #ifndef MIXING_STEPPERS
+	#define MIXING_EXTRUDER
 	#define MIXING_STEPPERS 4
   #endif
-  
+
 
 #elif ENABLED(IS_INFINITY_SF)                     // INFINITY_SF  (Spindle, Controller High-power Fan)
   #define HEATER_0_PIN   MOSFET_E0_PIN
-  #define FAN_PIN        MOSFET_BED_PIN  
+  #define FAN_PIN        MOSFET_BED_PIN
   #define SPINDLE_LASER_ENABLE			// enable LASER power (AUX PWM) and Spindle DIR/EN 5v logic
   #define EXTRUDERS 1
-  #ifndef HOTENDS 
+  #ifndef HOTENDS
 	#define HOTENDS 1
   #endif
 
 #else                                       // Non-specific 
   #define HEATER_0_PIN   MOSFET_E0_PIN
-  #define FAN_PIN        MOSFET_AUX_PIN 
+  #define FAN_PIN        MOSFET_AUX_PIN
   #define HEATER_BED_PIN MOSFET_BED_PIN
   #ifndef EXTRUDERS
 	#define EXTRUDERS 1
   #endif
-  #ifndef HOTENDS 
+  #ifndef HOTENDS
 	#define HOTENDS 1
   #endif
 
@@ -309,12 +309,12 @@ else
     #define SPINDLE_LASER_PWM_PIN  MOSFET_AUX_PIN  // MUST BE HARDWARE PWM
     #define SPINDLE_DIR_PIN           34  // Pin should have a pullup/pulldown!
 #endif
- 
- 
+
+
  //
  // 5v I2C Bus
  //
 #define  I2C_SCL_PIN 21
 #define  I2C_SDA_PIN 20
- 
- 
+
+
