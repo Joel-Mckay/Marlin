@@ -60,7 +60,7 @@ AVRDUDE_PROGRAM ?= /opt/arduino/hardware/tools/avr/bin/avrdude
 AVRDUDE_CONFIG_FILE ?= /opt/arduino/hardware/tools/avr/etc/avrdude.conf
 
 # This defines the board to compile for (see boards.h for your board's ID)
-HARDWARE_MOTHERBOARD ?= 775
+HARDWARE_MOTHERBOARD ?= 777
 
 # Arduino source install directory, and version number
 # On most linuxes this will be /usr/share/arduino

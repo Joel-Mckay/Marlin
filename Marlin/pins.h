@@ -237,18 +237,17 @@
 // INFINITY Derivatives - ATmega2560
 //
 #elif MB(INFINITY_EFB)
-  #define IS_INFINITY_EFB
+  #define IS_INFINITY_EFB 1
   #include "pins_INFINITY.h"
 #elif MB(INFINITY_EEEEFB)
-  #define IS_INFINITY_EEEEFB
+  #define IS_INFINITY_EEEEFB 1
   #include "pins_INFINITY.h"
 #elif MB(INFINITY_EEEEEB)
-  #define IS_INFINITY_EEEEEB
+  #define IS_INFINITY_EEEEEB 1
   #include "pins_INFINITY.h"
 #elif MB(INFINITY_SF)	//CNC/Laser milling/cutter
-  #define IS_INFINITY_SF
+  #define IS_INFINITY_SF 1
   #include "pins_INFINITY.h"
-
 #else
   #error "Unknown MOTHERBOARD value set in Configuration.h"
 #endif

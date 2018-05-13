@@ -52,13 +52,17 @@
 #if DISABLED(IS_INFINITY_EFB) && DISABLED(INFINITY_EEEEFB) && DISABLED(IS_INFINITY_EEEEEB) && DISABLED(IS_INFINITY_SF) 
 #if ENABLED(SPINDLE_LASER_ENABLE)
       #define IS_INFINITY_SF
+      #pragma message "mode is IS_INFINITY_SF"
 #else
-	#if (HOTENDS > 1) && (HOTENDS < 5)
+	#if (EXTRUDERS > 1) && (EXTRUDERS < 5)
 		#define IS_INFINITY_EEEEFB
-	#elif HOTENDS > 4
+		#pragma message "mode is IS_INFINITY_EEEEFB"
+	#elif EXTRUDERS > 4
 		#define IS_INFINITY_EEEEEB
+                #pragma message "mode is IS_INFINITY_EEEEEB"
 	#else
 		#define IS_INFINITY_EFB
+                #pragma message "mode is IS_INFINITY_EFB"
 	#endif
 #endif
 #endif
@@ -89,7 +93,7 @@
 #ifndef SAFETY_TRIGGERED_PIN
 	//Access door open: SW Door n/c (held high, short to GND to trigger)
 	#define SAFETY_TRIGGERED_PIN 28
-#endif 
+#endif
 #ifndef KILL_PIN
 	//ESTOP n/c (held high, short to GND to trigger)
 	#define KILL_PIN 27
@@ -97,7 +101,7 @@
 #ifndef SUICIDE_PIN
 	//ESTOP n/o (held high, short to GND to trigger)
 	#define SUICIDE_PIN 26
-#endif 
+#endif
 
 
 //
@@ -142,50 +146,50 @@
 	#define Z_DUAL_STEPPER_DRIVERS
 	#define Z2_STEP_PIN         65
 	#define Z2_DIR_PIN       43
-	//not conected to logic   
-	#define Z2_ENABLE_PIN     49  
+	//not conected to logic
+	#define Z2_ENABLE_PIN     49
 	#define Z2_CS_PIN           49
 #endif
 
-#if defined(IS_INFINITY_SF) 
+#if defined(IS_INFINITY_SF)
 	#define X_DUAL_STEPPER_DRIVERS
 	#define X2_STEP_PIN         69
 	#define X2_DIR_PIN       43
-	//not conected to logic   
-	#define X2_ENABLE_PIN     49  
+	//not conected to logic
+	#define X2_ENABLE_PIN     49
 	#define X2_CS_PIN           49
-else
+#else
 	#define E3_STEP_PIN        69
 	#define E3_DIR_PIN     53
-	//not conected to logic    
+	//not conected to logic
 	#define E3_ENABLE_PIN      49
 	#define E3_CS_PIN          49
 #endif
 
-#if defined(IS_INFINITY_SF) 
+#if defined(IS_INFINITY_SF)
 	#define Y_DUAL_STEPPER_DRIVERS
 	#define Y2_STEP_PIN         68
 	#define Y2_DIR_PIN       43
-	//not conected to logic   
-	#define Y2_ENABLE_PIN     49  
+	//not conected to logic
+	#define Y2_ENABLE_PIN     49
 	#define Y2_CS_PIN           49
-else
+#else
 	#define E2_STEP_PIN        68
 	#define E2_DIR_PIN        51
-	//not conected to logic    
+	//not conected to logic
 	#define E2_ENABLE_PIN   49
 	#define E2_CS_PIN          49
 #endif
 
 #define E1_STEP_PIN        67
 #define E1_DIR_PIN           50
-//not conected to logic   
+//not conected to logic
 #define E1_ENABLE_PIN   49
 #define E1_CS_PIN          49
 
 #define E0_STEP_PIN        66
 #define E0_DIR_PIN          45
-//not conected to logic     
+//not conected to logic
 #define E0_ENABLE_PIN  49
 #define E0_CS_PIN          49
 
@@ -261,16 +265,16 @@ else
   #define HEATER_3_PIN   MOSFET_E3_PIN
   #define FAN_PIN        MOSFET_AUX_PIN
   #define HEATER_BED_PIN MOSFET_BED_PIN
-  #ifndef EXTRUDERS
-	#define EXTRUDERS 4
-  #endif
-  #ifndef HOTENDS
-	#define HOTENDS 1
-  #endif
-  #ifndef MIXING_STEPPERS
-	#define MIXING_EXTRUDER
-	#define MIXING_STEPPERS 4
-  #endif
+ // #ifndef EXTRUDERS
+//	#define EXTRUDERS 4
+//  #endif
+//  #ifndef HOTENDS
+//	#define HOTENDS 1
+//  #endif
+//  #ifndef MIXING_STEPPERS
+//	#define MIXING_EXTRUDER
+//	#define MIXING_STEPPERS 4
+ // #endif
 
 
 #elif ENABLED(IS_INFINITY_SF)                     // INFINITY_SF  (Spindle, Controller High-power Fan)
